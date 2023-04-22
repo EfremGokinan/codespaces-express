@@ -24,7 +24,7 @@ io.on('connection', (socket) => {
   socket.on('order-changed', (text) => {
     console.log(socket.rooms);
     console.log('message from client: ', text);
-    io.emit('update-changes', text);
+    io.emit('order-changed', text);
   });
 
   socket.on('message', (text) => {
@@ -32,6 +32,12 @@ io.on('connection', (socket) => {
     console.log(socket.rooms)
     console.log('message-send', text);
     io.emit('message-send', text);
+  });
+
+  socket.on('order-changed', (text) => {
+    console.log(socket.rooms);
+    console.log('read messages: ', text);
+    io.emit('read', text);
   });
 
   socket.on("disconnect", () => console.log("Client disconnected"));
