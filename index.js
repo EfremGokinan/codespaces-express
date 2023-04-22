@@ -4,7 +4,9 @@ const io = require('socket.io')(server);
 const path = require('path');
 
 const cors = require('cors');
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:8100'
+}));
 var port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
