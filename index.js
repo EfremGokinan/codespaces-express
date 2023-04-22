@@ -5,7 +5,7 @@ const path = require('path');
 
 const io = require("socket.io")(server, {
   cors: {
-   origins: "*",
+   origins: '*',
    methods: ["GET", "POST"],
  }
 });
@@ -34,6 +34,12 @@ io.on('connection', (socket) => {
     console.log(socket.rooms)
     console.log('message-send', text);
     io.emit('message-send', text);
+  });
+
+  socket.on('order-changed', (text) => {
+    console.log(socket.rooms);
+    console.log('read messages: ', text);
+    io.emit('read', text);
   });
 
   socket.on("disconnect", () => console.log("Client disconnected"));
