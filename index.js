@@ -1,15 +1,17 @@
+const cors = require('cors');
 let app = require('express')();
 let server = require('http').createServer(app);
 const path = require('path');
-const cors = require('cors');
 
 const io = require("socket.io")(server, {
   cors: {
-    origin: "*",
-    methods: ["GET", "POST"]
-  }
+   origins: "*",
+   methods: ["GET", "POST"],
+ }
 });
+
 app.use(cors());
+
 var port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
